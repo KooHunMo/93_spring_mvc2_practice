@@ -19,6 +19,7 @@ public class BoardController {
 	
 	@RequestMapping(value="/boardWrite", method=RequestMethod.POST)
 	public String boardWrite(BoardDto boardDto) {
+		System.out.println(boardDto);
 		boardService.insertBoard(boardDto);
 		
 		return "home";

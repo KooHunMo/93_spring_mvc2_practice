@@ -15,6 +15,9 @@ public class BoardDaoImpl implements BoardDao {
 	@Override
 	public void insert(BoardDto boardDto) {
 		
+		System.out.println("----DAO----");
+		System.out.println(boardDto);
+		
 		sqlSession.insert("mapper.BoardPracticeMapper.insertBoard", boardDto);
 	}
 

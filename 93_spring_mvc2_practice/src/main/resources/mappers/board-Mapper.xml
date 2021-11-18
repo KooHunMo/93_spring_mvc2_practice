@@ -4,7 +4,7 @@
 		
 <mapper namespace="mapper.BoardPracticeMapper">
 
-	<insert id="insertBoard" parameterType="com.spring.practice.board.dto">
+	<insert id="insertBoard" parameterType="com.spring.practice.board.dto.BoardDto">
 		INSERT INTO T_BOARD(
 					WRITER,
 					EMAIL,
