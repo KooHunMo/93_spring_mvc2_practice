@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+		"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> <!--mapper임을 명시하기 위한 DTD 선언 -->
+		
+<mapper namespace="mapper.BoardPracticeMapper">
+
+	<insert id="insertBoard" parameterType="com.spring.practice.board.dto">
+		INSERT INTO T_BOARD(
+					WRITER,
+					EMAIL,
+					SUBJECT,
+					PASSWORD,
+					REG_DATE,
+					READ_COUNT,
+					CONTENT)
+		VALUES(
+					#{writer}, <!-- 주의: 대소문자 구별함! -->
+					#{email},
+					#{subject},
+					#{password},
+					now(), 
+					#{readCount},
+					#{content} 
+					
+		)
+	</insert>
+</mapper>
