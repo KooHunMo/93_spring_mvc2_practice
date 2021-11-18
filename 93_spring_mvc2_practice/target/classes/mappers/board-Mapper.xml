@@ -24,4 +24,11 @@
 					
 		)
 	</insert>
+	
+	<select id="getAllBoard" resultType="com.spring.practice.board.dto.BoardDto">
+		SELECT 
+				*
+		FROM
+				T_BOARD;
+	</select>
 </mapper>

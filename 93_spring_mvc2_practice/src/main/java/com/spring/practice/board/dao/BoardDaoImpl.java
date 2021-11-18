@@ -1,5 +1,7 @@
 package com.spring.practice.board.dao;
 
+import java.util.List;
+
 import org.apache.ibatis.session.SqlSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
@@ -19,6 +21,12 @@ public class BoardDaoImpl implements BoardDao {
 		System.out.println(boardDto);
 		
 		sqlSession.insert("mapper.BoardPracticeMapper.insertBoard", boardDto);
+	}
+
+	@Override
+	public List<BoardDto> selectAll() {
+		
+		return sqlSession.selectList("mapper.BoardPracticeMapper.getAllBoard");
 	}
 
 }
