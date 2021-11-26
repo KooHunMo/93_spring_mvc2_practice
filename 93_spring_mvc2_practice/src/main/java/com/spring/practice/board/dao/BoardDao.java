@@ -8,4 +8,11 @@ public interface BoardDao {
 	
 	public void insert(BoardDto boardDto);
 	public List<BoardDto> selectAll();
+	public BoardDto selectOne(int num);
+	public BoardDto validateUserCheck(BoardDto boardDto);
+	public void delete(int num);
+	public void update(BoardDto boardDto);
+	public void increaseReadCount(int num);
+	
+	
 }

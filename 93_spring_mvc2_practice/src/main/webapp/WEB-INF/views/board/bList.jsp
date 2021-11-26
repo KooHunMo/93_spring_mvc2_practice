@@ -18,10 +18,10 @@
 				<td>작성일</td>
 				<td>조회수</td>
 			</tr>
-			<c:forEach var="boardDto" items="${boardList}">
+			<c:forEach var="boardDto" items="${boardList}">  <!-- boardList를 받아온다 -->
 					<tr>
 							<td>${boardDto.num }</td>
-							<td>${boardDto.subject }</td>
+							<td><a href="boardInfo?num=${boardDto.num }"> ${boardDto.subject } </a></td>
 							<td>${boardDto.writer }</td>
 							<td><fmt:formatDate value="${boardDto.regDate }" pattern="yyyy-MM-dd" /></td>
 							<td>${boardDto.readCount }</td>

@@ -12,20 +12,52 @@ import com.spring.practice.board.dto.BoardDto;
 public class BoardServiceImpl implements BoardService {
 
 	@Autowired
-	private BoardDao BoardDao;  // 왜 둘 다 대문자인지??
+	private BoardDao boardDao; 
 	
 	@Override
 	public void insertBoard(BoardDto boardDto) {
 		
-		System.out.println("----service---");
-		BoardDao.insert(boardDto);
+		boardDao.insert(boardDto);
 		
 	}
 
 	@Override
 	public List<BoardDto> getBoardList() {
-		return BoardDao.selectAll();
 		
+		return boardDao.selectAll();
+		
+	}
+
+	@Override
+	public BoardDto getOneBoard(int num) {
+		
+		boardDao.increaseReadCount(num);
+		
+		return boardDao.selectOne(num);
+	}
+
+	@Override
+	public boolean deleteBoard(BoardDto boardDto) {
+		
+		boolean isSucceed = false;
+		
+		if(boardDao.validateUserCheck(boardDto) != null) {
+			boardDao.delete(boardDto.getNum());
+			isSucceed = true;
+		}
+		return isSucceed;
+	}
+
+	@Override
+	public boolean updateBoard(BoardDto boardDto) {
+		boolean isSucceed = false;
+		
+		if(boardDao.validateUserCheck(boardDto) != null) {
+			boardDao.update(boardDto);
+			isSucceed = true;
+		}
+		
+		return isSucceed;
 	}
 
 	

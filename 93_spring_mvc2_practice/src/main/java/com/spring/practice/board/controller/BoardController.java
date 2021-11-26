@@ -7,6 +7,7 @@ import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestMethod;
+import org.springframework.web.bind.annotation.RequestParam;
 
 import com.spring.practice.board.dto.BoardDto;
 import com.spring.practice.board.service.BoardService;
@@ -16,6 +17,11 @@ public class BoardController {
 
 	@Autowired
 	private BoardService boardService;
+	
+	@RequestMapping(value="/" , method = RequestMethod.GET)
+	public String main() {
+		return "board/bMain";
+	}
 	
 	@RequestMapping(value="/boardWrite" ,method=RequestMethod.GET)
 	public String boardWrite() {
@@ -38,5 +44,14 @@ public class BoardController {
 		model.addAttribute("boardList", boardList);
 		
 		return "board/bList";
+	}
+	
+	@RequestMapping(value="/bordInfo", method=RequestMethod.GET)
+	public String boardInfo(@RequestParam("num") int num, Model model) {
+			
+	BoardDto boardDto = boardService.getOneBoard(num);
+			
+	return "board/bInfo";
+		
 	}
 }

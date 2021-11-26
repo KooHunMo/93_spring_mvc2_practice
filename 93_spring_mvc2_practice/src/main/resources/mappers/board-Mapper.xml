@@ -1,10 +1,10 @@
-<?xml version="1.0" encoding="UTF-8"?>
+                                                                                                                             <?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> <!--mapper임을 명시하기 위한 DTD 선언 -->
-		
-<mapper namespace="mapper.BoardPracticeMapper">
 
-	<insert id="insertBoard" parameterType="com.spring.practice.board.dto.BoardDto">
+<mapper namespace="mapper.BoardMapper">  <!-- namespace는 다른 파일과 이름이 중복되면 안된다 -->
+
+	<insert id="insertBoard" parameterType="com.spring.training.board.dto.BoardDto">  <!-- 복붙 추천 -->
 		INSERT INTO T_BOARD(
 					WRITER,
 					EMAIL,
@@ -23,12 +23,60 @@
 					#{content} 
 					
 		)
+		
 	</insert>
+							<!-- db컬럼명과 스프링 POJO의 필드와 매칭되는 설정 -->
+	<select id="getAllBoard" resultType="com.spring.training.board.dto.BoardDto"> <!-- resultType: 반환타입 - Dto -->
+	SELECT 
+			*
+	FROM
+			T_BOARD <!-- ; 쓰는거 맞아?  답: 안씀 -->
 	
-	<select id="getAllBoard" resultType="com.spring.practice.board.dto.BoardDto">
-		SELECT 
+	</select>
+	
+	<select id="getOneBoard" parameterType="int" resultType="com.spring.training.board.dto.BoardDto">
+		SELECT
 				*
 		FROM
-				T_BOARD;
+				T_BOARD
+		WHERE
+				NUM= #{num}  <!-- #이 뭐지 -->
+	
 	</select>
+	
+	<select id="validateUserCheck" parameterType="com.spring.training.board.dto.BoardDto" resultType="com.spring.training.board.dto.BoardDto">
+		SELECT						<!-- 받고 주는 것 모두 DTO로 써야한다. 주고 받기 때문에 -->
+				* <!-- 이것 때문에 resultType="com.spring.training.board.dto.BoardDto"를 쓴다 -->
+		FROM
+				T_BOARD
+		WHERE
+					NUM = #{num} AND PASSWORD = #{password}  <!-- 대소문자 구분할 것 -->
+	</select>		<!-- 이것 때문에 parameterType="com.spring.training.board.dto.BoardDto" 를 쓴다 -->
+	
+	<delete id="deleteBoard" parameterType="int"> <!-- select가 아니기 때문에 resultType은 없다-->
+		DELETE FROM 
+				T_BOARD 
+		WHERE 
+				NUM=#{num}
+	</delete>
+	
+	<update id="updateBoard" parameterType="com.spring.training.board.dto.BoardDto"> 
+	UPDATE
+			T_BOARD
+	SET
+			SUBJECT = #{subject},
+			CONTENT = #{content}
+	WHERE
+			NUM = #{num}  
+	
+	</update>
+	
+	<update id="increaseReadCount" parameterType="int">
+	UPDATE
+			T_BOARD
+	SET
+			READ_COUNT = READ_COUNT + 1
+	WHERE 
+			NUM = #{num}
+	</update>
 </mapper>
