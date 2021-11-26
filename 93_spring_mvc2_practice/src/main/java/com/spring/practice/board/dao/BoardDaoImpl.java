@@ -17,19 +17,19 @@ public class BoardDaoImpl implements BoardDao {
 	@Override
 	public void insert(BoardDto boardDto) {
 		
-		sqlSession.insert("mapper.BoardPracticeMapper.insertBoard", boardDto);
+		sqlSession.insert("mapper.BoardMapper.insertBoard", boardDto);
 	}
 
 	@Override
 	public List<BoardDto> selectAll() {
 		
-		return sqlSession.selectList("mapper.BoardPracticeMapper.getAllBoard");
+		return sqlSession.selectList("mapper.BoardMapper.getAllBoard");
 	}
 
 	@Override
 	public BoardDto selectOne(int num) {
 		
-		return sqlSession.selectOne("mapper.BoardMapper.getOneBoard,num");
+		return sqlSession.selectOne("mapper.BoardMapper.getOneBoard",num);
 	}
 
 	@Override
@@ -41,13 +41,13 @@ public class BoardDaoImpl implements BoardDao {
 	@Override
 	public void delete(int num) {
 		
-		sqlSession.delete("mapper.BoardMapper.deleteBoard,num");
+		sqlSession.delete("mapper.BoardMapper.deleteBoard",num);
 		
 	}
 
 	@Override
 	public void update(BoardDto boardDto) {
-		sqlSession.update("mapper.BoardMapper.updateBoard,num");
+		sqlSession.update("mapper.BoardMapper.updateBoard",boardDto);
 		
 	}
 

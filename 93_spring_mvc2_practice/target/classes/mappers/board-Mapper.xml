@@ -1,10 +1,10 @@
-                                                                                                                             <?xml version="1.0" encoding="UTF-8"?>
+<?xml version="1.0" encoding="UTF-8"?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
 		"http://mybatis.org/dtd/mybatis-3-mapper.dtd"> <!--mapper임을 명시하기 위한 DTD 선언 -->
 
 <mapper namespace="mapper.BoardMapper">  <!-- namespace는 다른 파일과 이름이 중복되면 안된다 -->
 
-	<insert id="insertBoard" parameterType="com.spring.training.board.dto.BoardDto">  <!-- 복붙 추천 -->
+	<insert id="insertBoard" parameterType="com.spring.practice.board.dto.BoardDto">  <!-- 복붙 추천 -->
 		INSERT INTO T_BOARD(
 					WRITER,
 					EMAIL,
@@ -26,7 +26,7 @@
 		
 	</insert>
 							<!-- db컬럼명과 스프링 POJO의 필드와 매칭되는 설정 -->
-	<select id="getAllBoard" resultType="com.spring.training.board.dto.BoardDto"> <!-- resultType: 반환타입 - Dto -->
+	<select id="getAllBoard" resultType="com.spring.practice.board.dto.BoardDto"> <!-- resultType: 반환타입 - Dto -->
 	SELECT 
 			*
 	FROM
@@ -34,7 +34,7 @@
 	
 	</select>
 	
-	<select id="getOneBoard" parameterType="int" resultType="com.spring.training.board.dto.BoardDto">
+	<select id="getOneBoard" parameterType="int" resultType="com.spring.practice.board.dto.BoardDto">
 		SELECT
 				*
 		FROM
@@ -44,7 +44,7 @@
 	
 	</select>
 	
-	<select id="validateUserCheck" parameterType="com.spring.training.board.dto.BoardDto" resultType="com.spring.training.board.dto.BoardDto">
+	<select id="validateUserCheck" parameterType="com.spring.practice.board.dto.BoardDto" resultType="com.spring.practice.board.dto.BoardDto">
 		SELECT						<!-- 받고 주는 것 모두 DTO로 써야한다. 주고 받기 때문에 -->
 				* <!-- 이것 때문에 resultType="com.spring.training.board.dto.BoardDto"를 쓴다 -->
 		FROM
@@ -60,7 +60,7 @@
 				NUM=#{num}
 	</delete>
 	
-	<update id="updateBoard" parameterType="com.spring.training.board.dto.BoardDto"> 
+	<update id="updateBoard" parameterType="com.spring.practice.board.dto.BoardDto"> 
 	UPDATE
 			T_BOARD
 	SET
